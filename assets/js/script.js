@@ -1,3 +1,3 @@
 function newGame(){
-console.log("newGame");
+	console.log("newGame");
 }
