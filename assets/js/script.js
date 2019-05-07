@@ -6,7 +6,7 @@ var texte = "";
 var plateau = [];
 
 for (var i = 0; i < nbLignes; i++) {
-	plateau[i] = new Array();
+	plateau[i] = [];
 }
 
 function newGame(){
@@ -17,16 +17,16 @@ function newGame(){
 	}
 	console.log(plateau);
 	joueur = 1;
-	afficheTextAnnonce("Le jeu commence ! c'est au tour du joueur "+nomDuJoueur(joueur));
+	afficheTextAnnonce("Le jeu commence ! c'est au tour du joueur " + nomDuJoueur(joueur));
 	jeu = true;
 	creerTableau();
 	return;
 
 }
 
-function afficheTextAnnonce(texte, joueur){
-	var elt = document.getElementById("textAnnonce");
-	elt.innerHTML = texte;
+function afficheTextAnnonce(texte = "test"){
+	
+	document.getElementById("textAnnonce").innerHTML = texte;
 	return;
 }
 
