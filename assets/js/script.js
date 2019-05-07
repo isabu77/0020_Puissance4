@@ -6,10 +6,38 @@ var texte = "";
 var plateau = [];
 
 for (var i = 0; i < nbLignes; i++) {
-	plateau[i] = [];
+	plateau[i] = new Array();
 }
 
 function newGame(){
-	console.log("newGame");
+	for (var i = 0; i < nbLignes; i++) {
+		for (var j = 0; j < nbColonnes; j++) {
+			plateau[i][j] = 0;
+		}
+	}
+	console.log(plateau);
+	joueur = 1;
+	afficheTextAnnonce("Le jeu commence ! c'est au tour du joueur "+nomDuJoueur(joueur));
+	jeu = true;
+	creerTableau();
+	return;
+
 }
 
+function afficheTextAnnonce(texte, joueur){
+	var elt = document.getElementById("textAnnonce");
+	elt.innerHTML = texte;
+	return;
+}
+
+function nomDuJoueur(numJoueur){
+	if (numJoueur == 1){
+		return ("rouge");
+	}else{
+		return("bleu");
+	}
+}
+
+function creerTableau(){
+
+}
