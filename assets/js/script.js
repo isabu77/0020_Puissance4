@@ -13,7 +13,6 @@ function newGame(){
 
 	this.nbLignes = this.nbColonnes = prompt("Entrez la taille du plateau (nb de lignes et de colonnes) ?");
 	this.score = prompt("Quel score faut-il atteindre pour gagner ?");
-	console.log(score);
 	if (parseInt(this.nbLignes) <= 0){
 		this.nbLignes = this.nbColonnes = 5;
 	}
@@ -143,7 +142,7 @@ function puissanceQuatre(lig, col, l, c){
 		var vd = 1 + puissanceQuatre(lig-1, col+1, -1, 1) + puissanceQuatre(lig+1, col-1, 1, -1);
 
 		//console.log(va,vb,vc,vd);
-		if(va == score || vb == score || vc == score || vd == score){
+		if(va >= score || vb >= score || vc >= score || vd >= score){
 			return true;
 		}
 		else{
