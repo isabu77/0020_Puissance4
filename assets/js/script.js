@@ -4,14 +4,33 @@ var nbLignes = 5;
 var jeu = true;
 var texte = "";
 var plateau = [];  // ou new Array();
+var score = 5;
 
-for (var i = 0; i < nbLignes; i++) {
-	plateau[i] = [];
-}
 
 newGame();
 
 function newGame(){
+
+	this.nbLignes = this.nbColonnes = prompt("Entrez la taille du plateau (nb de lignes et de colonnes) ?");
+	this.score = prompt("Quel score faut-il atteindre pour gagner ?");
+	console.log(score);
+	if (parseInt(this.nbLignes) <= 0){
+		this.nbLignes = this.nbColonnes = 5;
+	}
+	if (parseInt(this.nbLignes) > 100){
+		this.nbLignes = this.nbColonnes = 100;
+	}
+	if (parseInt(this.score) <= 0){
+		this.score = 4;
+	}
+	if (parseInt(this.score) > parseInt(this.nbLignes)){
+		this.score = this.nbLignes;
+	}
+	document.getElementById("score").innerHTML = "Score à atteindre : " + this.score;
+
+	for (var i = 0; i < this.nbLignes; i++) {
+		this.plateau[i] = [];
+	}
 	// this : "celui du fichier", cad du contexte courant
 	for (var i = 0; i < this.nbLignes; i++) {
 		for (var j = 0; j < this.nbColonnes; j++) {
@@ -107,7 +126,7 @@ function refreshTableau(x, y, i){
 function puissanceQuatre(lig, col, l, c){
 	// condition primaire de la récursivité
 	if (c == 0 && l == 0){
-		console.log("initial valeurs : " + lig + " " + col + " / Incrément " + l + " " + c);
+		//console.log("initial valeurs : " + lig + " " + col + " / Incrément " + l + " " + c);
 
 		// ce 1er appel lance les appels récursifs
 		// -1 pour decaler d'une colonne à gauche ou en haut (et ne pas revenir dans cette condition 0 0) 
@@ -123,8 +142,8 @@ function puissanceQuatre(lig, col, l, c){
 		// diagonale qui descend vers la droite
 		var vd = 1 + puissanceQuatre(lig-1, col+1, -1, 1) + puissanceQuatre(lig+1, col-1, 1, -1);
 
-		console.log(va,vb,vc,vd);
-		if(va == 4 || vb == 4 || vc == 4 || vd == 4){
+		//console.log(va,vb,vc,vd);
+		if(va == score || vb == score || vc == score || vd == score){
 			return true;
 		}
 		else{
@@ -134,7 +153,7 @@ function puissanceQuatre(lig, col, l, c){
 
 	// condition terminale
 	if (lig < this.nbLignes && lig >= 0 && col < this.nbColonnes && col >= 0){
-		console.log("récursive valeurs : " + lig + " " + col + " / Incrément " + l + " " + c);
+		//console.log("récursive valeurs : " + lig + " " + col + " / Incrément " + l + " " + c);
 		if (this.plateau[lig][col] == this.joueur){
 			//console.log("ok");
 			// boucle récursive avec le décalage d'entrée (-1 ou +1) pour voir les cases suivantes
